@@ -7,6 +7,6 @@ Useful for displaying in Git readmes, example below.
 
     ![Latest Post on bbrks.me](http://dev.bbrks.me/feedimg/image.php?url=bbrks.me/feed)
 
-:sparkles: :sparkles:
+:sparkles: :arrow_down: :sparkles: :arrow_down: :sparkles: :arrow_down: :sparkles:
 
 ![Latest Post on bbrks.me](http://dev.bbrks.me/feedimg/image.php?url=bbrks.me/feed)
