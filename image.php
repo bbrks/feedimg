@@ -25,4 +25,31 @@ function getLatestItem($feed_url) {
 
 }
 
+function drawFeedImage($item) {
+  $text = $item['title'];
+
+  $image = new Imagick();
+  $draw = new ImagickDraw();
+  $color = new ImagickPixel('#000000');
+  $background = new ImagickPixel('none');
+
+  $draw->setFont('./OpenSans-Regular.ttf');
+  $draw->setFontSize(24);
+  $draw->setFillColor($color);
+  $draw->setStrokeAntialias(true);
+  $draw->setTextAntialias(true);
+
+  $metrics = $image->queryFontMetrics($draw, $text);
+
+  $draw->annotation(0, $metrics['ascender'], $text);
+
+  $image->newImage($metrics['textWidth'], $metrics['textHeight'], $background);
+  $image->setImageFormat('png');
+  $image->drawImage($draw);
+
+  header('Content-type: image/png');
+  echo $image;
+}
+
 $item = getLatestItem($feed_url);
+drawFeedImage($item);
