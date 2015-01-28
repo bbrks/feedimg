@@ -10,3 +10,11 @@ Useful for displaying in Git readmes, example below.
 :sparkles: :arrow_down: :sparkles: :arrow_down: :sparkles: :arrow_down: :sparkles:
 
 ![Latest Post on bbrks.me](http://dev.bbrks.me/feedimg/image.php?url=bbrks.me/feed)
+
+# Installation
+Requires PHP with Imagemagick
+
+# License
+This software is released under the MIT license
+
+Open Sans is being redistributed under the Apache 2.0 license
