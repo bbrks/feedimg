@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('UTC');
+
 if (isset($_GET['url'])) {
   $feed_url = $_GET['url'];
   // Prepend a protocol if none exists
@@ -19,17 +21,26 @@ function getLatestItem($feed_url) {
     $item['title'] = $x->channel->item[0]->title;
     $item['description'] = $x->channel->item[0]->description;
     $item['link'] = $x->channel->item[0]->link;
-    $item['pubDate'] = $x->channel->item[0]->pubDate;
+    $date = $x->channel->item[0]->pubDate;
+    $date = DateTime::createFromFormat('D, d M Y H:i:s T', $date);
+    $item['pubDate'] = $date->format('Y-m-d H:i:s');
 
     return $item;
 
 }
 
 function drawFeedImage($item) {
-  $text = $item['title'];
+  $title = $item['title'];
+  $date  = $item['pubDate'];
+
+  $width  = 0;
+  $height = 0;
+
+  $text[] = $title;
+  $text[] = $date;
 
   $image = new Imagick();
-  $draw = new ImagickDraw();
+  $draw  = new ImagickDraw();
   $color = new ImagickPixel('#000000');
   $background = new ImagickPixel('none');
 
@@ -39,11 +50,23 @@ function drawFeedImage($item) {
   $draw->setStrokeAntialias(true);
   $draw->setTextAntialias(true);
 
-  $metrics = $image->queryFontMetrics($draw, $text);
+  $count = 0;
+  foreach ($text as $line) {
+    $count++;
+    $metrics = $image->queryFontMetrics($draw, $line);
+    $draw->annotation(0, $metrics['ascender'] * $count, $line);
 
-  $draw->annotation(0, $metrics['ascender'], $text);
+    if ($width < $metrics['textWidth']) {
+      $width = $metrics['textWidth'];
+    }
 
-  $image->newImage($metrics['textWidth'], $metrics['textHeight'], $background);
+    if ($height < $metrics['textHeight'] * $count) {
+      $height = $metrics['textHeight'] * $count;
+    }
+
+  }
+
+  $image->newImage($width, $height, $background);
   $image->setImageFormat('png');
   $image->drawImage($draw);
 
