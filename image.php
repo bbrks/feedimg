@@ -71,6 +71,8 @@ function drawFeedImage($item) {
   $image->drawImage($draw);
 
   header('Content-type: image/png');
+  header('Cache-Control: no-cache');
+  header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   echo $image;
 }
 
