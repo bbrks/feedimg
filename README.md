@@ -15,7 +15,7 @@ Useful for displaying in Git readmes, example below.
 Requires PHP with Imagemagick
 
 # GET params
-- scale - Scales the image by a factor of this. (e.g. 2 for retina images)
+- scale - Scales the image by a factor of this. Must be in the range 1 to 5
 
 # License
 This software is released under the MIT license
