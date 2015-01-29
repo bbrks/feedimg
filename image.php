@@ -13,6 +13,8 @@ if (isset($_GET['url'])) {
   die('Please supply a URL parameter: ?url=http://example.com/feed.atom');
 }
 
+$scale = (isset($_GET['scale'])) ? (int)$_GET['scale'] : 1;
+
 function getLatestItem($feed_url) {
 
     $content = file_get_contents($feed_url);
@@ -30,6 +32,9 @@ function getLatestItem($feed_url) {
 }
 
 function drawFeedImage($item) {
+
+  global $scale;
+
   $title = $item['title'];
   $date  = $item['pubDate'];
 
@@ -45,7 +50,7 @@ function drawFeedImage($item) {
   $background = new ImagickPixel('none');
 
   $draw->setFont('./OpenSans-Regular.ttf');
-  $draw->setFontSize(24);
+  $draw->setFontSize(24*$scale);
   $draw->setFillColor($color);
   $draw->setStrokeAntialias(true);
   $draw->setTextAntialias(true);
