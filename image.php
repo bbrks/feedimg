@@ -13,7 +13,13 @@ if (isset($_GET['url'])) {
   die('Please supply a URL parameter: ?url=http://example.com/feed.atom');
 }
 
-$scale = (isset($_GET['scale'])) ? (int)$_GET['scale'] : 1;
+if (isset($_GET['scale'])) {
+  if (($_GET['scale'] >= 1) && ($_GET['scale'] <= 5)) {
+     $scale = (int)$_GET['scale'];
+  } else {
+    die('Scale must be in the range 1..5');
+  }
+}
 
 function getLatestItem($feed_url) {
 
