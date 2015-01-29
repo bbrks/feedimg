@@ -19,6 +19,8 @@ if (isset($_GET['scale'])) {
   } else {
     die('Scale must be in the range 1..5');
   }
+} else {
+  $scale = 1;
 }
 
 function getLatestItem($feed_url) {
