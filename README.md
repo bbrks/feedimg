@@ -14,6 +14,9 @@ Useful for displaying in Git readmes, example below.
 # Installation
 Requires PHP with Imagemagick
 
+# GET params
+- scale - Scales the image by a factor of this. (e.g. 2 for retina images)
+
 # License
 This software is released under the MIT license
 
