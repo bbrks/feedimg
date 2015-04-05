@@ -18,6 +18,6 @@ Requires PHP with Imagemagick
 - scale - Scales the image by a factor of this. Must be in the range 1 to 5
 
 # License
-This software is released under the MIT license
+This software is released under the [MIT license](LICENSE)
 
 Open Sans is being redistributed under the Apache 2.0 license
